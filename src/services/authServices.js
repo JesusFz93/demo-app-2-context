@@ -5,5 +5,6 @@ export const loginSerivce = async (form) => {
     "https://demo-api-2.onrender.com/api/auth/login",
     form
   );
+
   return resp.data;
 };

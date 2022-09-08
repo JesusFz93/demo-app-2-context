@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import Title from "../components/Title";
-import { loginSerivce } from "../services/authServices";
 
 const initForm = {
   username: "",
@@ -9,15 +9,12 @@ const initForm = {
 
 const LoginPage = () => {
   const [form, setForm] = useState(initForm);
-  const [auth, setAuth] = useState({});
+  const { auth, login } = useContext(AuthContext);
 
   const handleForm = async (e) => {
     e.preventDefault();
 
-    const data = await loginSerivce(form);
-    setAuth(data.data);
-
-    localStorage.setItem("token", data.token);
+    await login(form);
   };
 
   const cambio = (e) => {
