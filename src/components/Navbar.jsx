@@ -41,6 +41,17 @@ const Navbar = () => {
                   isActive ? "nav-link active" : "nav-link"
                 }
                 aria-current="page"
+                to="/products"
+              >
+                Products
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+                aria-current="page"
                 to="/login"
               >
                 Login
