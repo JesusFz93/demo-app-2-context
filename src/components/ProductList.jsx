@@ -1,23 +1,8 @@
-import React, { useState } from "react";
-
-const initialState = [
-  {
-    id: 1,
-    name: "Laptop",
-    description: "Laptop de alta gama",
-    price: 4000,
-  },
-
-  {
-    id: 2,
-    name: "Refri",
-    description: "Electrodomestico para almacenar alimentos",
-    price: 10000,
-  },
-];
+import React, { useContext } from "react";
+import ProductContext from "../context/ProductContext";
 
 const ProductList = () => {
-  const [products] = useState(initialState);
+  const { products } = useContext(ProductContext);
 
   return (
     <ul>
