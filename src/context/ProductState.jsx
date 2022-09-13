@@ -1,30 +1,36 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useCallback } from "react";
 import ProductContext from "./ProductContext";
 import productReducer from "./ProductReducer";
+import { obtenerProductosService } from "../services/productServices";
 
 const initialState = {
-  products: [
-    {
-      id: 1,
-      name: "Laptop lenovo",
-      description: "Laptop de alta gama",
-      price: 3444,
-    },
-
-    {
-      id: 2,
-      name: "Refri mabe",
-      description: "Electrodomestico para almacenar alimentos",
-      price: 11000,
-    },
-  ],
+  products: [],
 };
 
 const ProductState = ({ children }) => {
   const [globalState, dispatch] = useReducer(productReducer, initialState);
 
+  const obtenerProductos = useCallback(async () => {
+    const resp = await obtenerProductosService();
+    const productos = resp.data.map((obj) => {
+      return {
+        id: obj._id,
+        name: obj.name,
+        description: obj.description,
+        price: obj.price,
+      };
+    });
+
+    dispatch({
+      type: "OBTENER_PRODUCTOS",
+      payload: productos,
+    });
+  }, []);
+
   return (
-    <ProductContext.Provider value={{ products: initialState.products }}>
+    <ProductContext.Provider
+      value={{ products: globalState.products, obtenerProductos }}
+    >
       {children}
     </ProductContext.Provider>
   );

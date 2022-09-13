@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProductContext from "../context/ProductContext";
 
 const ProductList = () => {
-  const { products } = useContext(ProductContext);
+  const { products, obtenerProductos } = useContext(ProductContext);
+
+  useEffect(() => {
+    obtenerProductos();
+  }, [obtenerProductos]);
 
   return (
     <ul>

@@ -1,5 +1,4 @@
 import React from "react";
-import ProductList from "../components/ProductList";
 import Title from "../components/Title";
 
 const HomePage = () => {
@@ -7,9 +6,7 @@ const HomePage = () => {
     <>
       <Title titulo="Pagina de inicio" />
       <main className="row pt-5">
-        <article className="col">
-          <ProductList />
-        </article>
+        <article className="col">Pagina de inicio</article>
       </main>
     </>
   );
