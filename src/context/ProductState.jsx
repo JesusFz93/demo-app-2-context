@@ -1,7 +1,10 @@
 import React, { useReducer, useCallback } from "react";
 import ProductContext from "./ProductContext";
 import productReducer from "./ProductReducer";
-import { obtenerProductosService } from "../services/productServices";
+import {
+  crearProductoService,
+  obtenerProductosService,
+} from "../services/productServices";
 
 const initialState = {
   products: [],
@@ -27,9 +30,18 @@ const ProductState = ({ children }) => {
     });
   }, []);
 
+  const crearProducto = async (form) => {
+    await crearProductoService(form);
+    await obtenerProductos();
+  };
+
   return (
     <ProductContext.Provider
-      value={{ products: globalState.products, obtenerProductos }}
+      value={{
+        products: globalState.products,
+        obtenerProductos,
+        crearProducto,
+      }}
     >
       {children}
     </ProductContext.Provider>
