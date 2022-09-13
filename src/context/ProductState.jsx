@@ -3,6 +3,7 @@ import ProductContext from "./ProductContext";
 import productReducer from "./ProductReducer";
 import {
   crearProductoService,
+  eliminarProductoService,
   obtenerProductosService,
 } from "../services/productServices";
 
@@ -35,12 +36,18 @@ const ProductState = ({ children }) => {
     await obtenerProductos();
   };
 
+  const eliminarProducto = async (id) => {
+    await eliminarProductoService(id);
+    await obtenerProductos();
+  };
+
   return (
     <ProductContext.Provider
       value={{
         products: globalState.products,
         obtenerProductos,
         crearProducto,
+        eliminarProducto,
       }}
     >
       {children}

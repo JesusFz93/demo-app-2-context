@@ -22,3 +22,16 @@ export const crearProductoService = async (form) => {
 
   return resp.data;
 };
+
+export const eliminarProductoService = async (id) => {
+  const resp = await axios.delete(
+    `https://demo-api-2.onrender.com/api/products/${id}`,
+    {
+      headers: {
+        "auth-token": localStorage.getItem("token"),
+      },
+    }
+  );
+
+  return resp.data;
+};
