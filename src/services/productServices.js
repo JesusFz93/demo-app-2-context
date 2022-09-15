@@ -1,7 +1,10 @@
 import axios from "axios";
 
+const URL = "localhost:4000/api/products";
+// const URL = "https://demo-api-2.onrender.com/api/products";
+
 export const obtenerProductosService = async () => {
-  const resp = await axios.get("https://demo-api-2.onrender.com/api/products", {
+  const resp = await axios.get(URL, {
     headers: {
       "auth-token": localStorage.getItem("token"),
     },
@@ -10,28 +13,21 @@ export const obtenerProductosService = async () => {
 };
 
 export const crearProductoService = async (form) => {
-  const resp = await axios.post(
-    "https://demo-api-2.onrender.com/api/products",
-    form,
-    {
-      headers: {
-        "auth-token": localStorage.getItem("token"),
-      },
-    }
-  );
+  const resp = await axios.post(URL, form, {
+    headers: {
+      "auth-token": localStorage.getItem("token"),
+    },
+  });
 
   return resp.data;
 };
 
 export const eliminarProductoService = async (id) => {
-  const resp = await axios.delete(
-    `https://demo-api-2.onrender.com/api/products/${id}`,
-    {
-      headers: {
-        "auth-token": localStorage.getItem("token"),
-      },
-    }
-  );
+  const resp = await axios.delete(`${URL}/${id}`, {
+    headers: {
+      "auth-token": localStorage.getItem("token"),
+    },
+  });
 
   return resp.data;
 };
