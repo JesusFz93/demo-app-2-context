@@ -67,7 +67,6 @@ const ProductState = ({ children }) => {
 
   const actualizarProducto = async (id, form) => {
     await actualizarProductoService(id, form);
-
     await obtenerProducto(id);
   };
 
