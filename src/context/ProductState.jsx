@@ -17,6 +17,7 @@ const initialState = {
     description: "",
     price: "",
   },
+  cart: [],
 };
 
 const ProductState = ({ children }) => {
@@ -70,6 +71,26 @@ const ProductState = ({ children }) => {
     await obtenerProducto(id);
   };
 
+  const agregarProductoCarrito = (product) => {
+    const productoEncontrado = globalState.cart.find(
+      (producto) => product.id === producto.id
+    );
+
+    if (!productoEncontrado) {
+      dispatch({
+        type: "AGREGAR_PRODUCTO_CARRITO",
+        payload: product,
+      });
+    }
+  };
+
+  const eliminarProductoCarrito = (id) => {
+    dispatch({
+      type: "ELIMINAR_PRODUCTO_CARRITO",
+      payload: id,
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -80,6 +101,9 @@ const ProductState = ({ children }) => {
         obtenerProducto,
         product: globalState.product,
         actualizarProducto,
+        agregarProductoCarrito,
+        cart: globalState.cart,
+        eliminarProductoCarrito,
       }}
     >
       {children}

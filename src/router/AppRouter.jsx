@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CartPage from "../pages/CartPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import ProductPage from "../pages/ProductPage";
@@ -22,6 +23,7 @@ const AppRouter = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:id" element={<ProductPage />} />
+            <Route path="/cart" element={<CartPage />} />
 
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

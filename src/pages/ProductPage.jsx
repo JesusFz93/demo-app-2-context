@@ -6,7 +6,12 @@ import ProductFormEdit from "../components/ProductFormEdit";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { obtenerProducto, product } = useContext(ProductContext);
+  const { obtenerProducto, product, agregarProductoCarrito } =
+    useContext(ProductContext);
+
+  const handleAgregarProductoCarrito = () => {
+    agregarProductoCarrito(product);
+  };
 
   useEffect(() => {
     obtenerProducto(id);
@@ -30,6 +35,13 @@ const ProductPage = () => {
               <h5 className="card-title">{product.name}</h5>
               <p className="card-text">{product.description}</p>
               <p className="card-text">{product.price}</p>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleAgregarProductoCarrito}
+              >
+                Agregar al carrito
+              </button>
             </div>
           </div>
         </article>
