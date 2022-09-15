@@ -8,6 +8,7 @@ import {
 import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
+import ProductPage from "../pages/ProductPage";
 import ProductsPage from "../pages/ProductsPage";
 
 const AppRouter = () => {
@@ -20,6 +21,7 @@ const AppRouter = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<ProductPage />} />
 
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

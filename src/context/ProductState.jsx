@@ -2,13 +2,21 @@ import React, { useReducer, useCallback } from "react";
 import ProductContext from "./ProductContext";
 import productReducer from "./ProductReducer";
 import {
+  actualizarProductoService,
   crearProductoService,
   eliminarProductoService,
+  obtenerProductoService,
   obtenerProductosService,
 } from "../services/productServices";
 
 const initialState = {
   products: [],
+  product: {
+    id: "",
+    name: "",
+    description: "",
+    price: "",
+  },
 };
 
 const ProductState = ({ children }) => {
@@ -41,6 +49,27 @@ const ProductState = ({ children }) => {
     await obtenerProductos();
   };
 
+  const obtenerProducto = useCallback(async (id) => {
+    const res = await obtenerProductoService(id);
+    const producto = {
+      id: res.data._id,
+      name: res.data.name,
+      description: res.data.description,
+      price: res.data.price,
+    };
+
+    dispatch({
+      type: "OBTENER_PRODUCTO",
+      payload: producto,
+    });
+  }, []);
+
+  const actualizarProducto = async (id, form) => {
+    await actualizarProductoService(id, form);
+
+    await obtenerProducto(id);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -48,6 +77,9 @@ const ProductState = ({ children }) => {
         obtenerProductos,
         crearProducto,
         eliminarProducto,
+        obtenerProducto,
+        product: globalState.product,
+        actualizarProducto,
       }}
     >
       {children}

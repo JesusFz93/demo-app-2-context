@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import ProductContext from "../context/ProductContext";
 
 const ProductList = () => {
@@ -17,7 +18,9 @@ const ProductList = () => {
           <h2>{product.name}</h2>
           <p>{product.description}</p>
           <p>{product.price}</p>
-          <button className="btn btn-info">Ver mas...</button>
+          <NavLink to={`/products/${product.id}`} className="btn btn-info">
+            Ver mas...
+          </NavLink>
           <button
             className="btn btn-danger"
             onClick={() => eliminarProducto(product.id)}
