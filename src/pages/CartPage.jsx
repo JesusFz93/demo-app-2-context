@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import ProductContext from "../context/ProductContext";
 import CartList from "../components/CartList";
 import Title from "../components/Title";
+import PaypalCheckoutButton from "../components/PaypalCheckoutButton";
 
 const CartPage = () => {
   const { cart } = useContext(ProductContext);
@@ -19,11 +20,31 @@ const CartPage = () => {
           <CartList />
         </article>
       </main>
-      <section className="row pt-5">
-        <article className="col-md-12">
-          <h2>{total}</h2>
-        </article>
-      </section>
+
+      {cart.length > 0 ? (
+        <>
+          <section className="row pt-5">
+            <article className="col-md-12">
+              <h2>{total}</h2>
+            </article>
+          </section>
+          <section className="row">
+            <article className="col">
+              <PaypalCheckoutButton
+                currency={"MXN"}
+                amount={total}
+                showSpinner={false}
+              />
+            </article>
+          </section>
+        </>
+      ) : (
+        <section className="row">
+          <article className="col">
+            <h2>No hay productos en el carrito</h2>
+          </article>
+        </section>
+      )}
     </>
   );
 };
