@@ -11,6 +11,8 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import ProductPage from "../pages/ProductPage";
 import ProductsPage from "../pages/ProductsPage";
+import ProfilePage from "../pages/ProfilePage";
+import RegisterPage from "../pages/RegisterPage";
 
 const AppRouter = () => {
   return (
@@ -24,6 +26,8 @@ const AppRouter = () => {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:id" element={<ProductPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
 
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
