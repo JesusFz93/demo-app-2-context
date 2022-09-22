@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useCallback } from "react";
 import {
   loginSerivce,
   signupSerivce,
@@ -44,7 +44,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("token", data.token);
   };
 
-  const verifyingToken = async () => {
+  const verifyingToken = useCallback(async () => {
+    console.log("ejecutando verifyingToken");
     const token = localStorage.getItem("token");
 
     if (token) {
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }) => {
         authStatus: false,
       });
     }
-  };
+  }, []);
 
   const logout = () => {
     localStorage.removeItem("token");
